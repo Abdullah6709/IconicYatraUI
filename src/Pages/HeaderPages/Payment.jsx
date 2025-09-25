@@ -121,7 +121,7 @@ const PaymentOption = () => {
 
       <Grid container spacing={4}>
         {/* LEFT SIDE - PAYMENT DETAILS */}
-        <Grid size={{xs:12, md:8}}>
+        <Grid size={{ xs: 12, md: 8 }}>
           <Card
             elevation={4}
             sx={{
@@ -185,14 +185,18 @@ const PaymentOption = () => {
                     Net Banking
                   </Typography>
                 </Box>
-                <Typography variant="body1" sx={{ mb: 3, color: "text.secondary" }}>
-                  Transfer funds directly from your bank account using the details below:
+                <Typography
+                  variant="body1"
+                  sx={{ mb: 3, color: "text.secondary" }}
+                >
+                  Transfer funds directly from your bank account using the
+                  details below:
                 </Typography>
 
                 {/* Bank Details Cards */}
                 <Grid container spacing={3}>
                   {bankDetails.map((bank, index) => (
-                    <Grid size={{xs:12, sm:6}} key={index}>
+                    <Grid size={{ xs: 12, sm: 6 }} key={index}>
                       <Paper
                         elevation={2}
                         sx={{
@@ -220,11 +224,21 @@ const PaymentOption = () => {
                           <Box key={key} sx={{ mb: 1.5 }}>
                             <Typography
                               variant="caption"
-                              sx={{ fontWeight: "bold", color: "text.secondary", textTransform: "uppercase" }}
+                              sx={{
+                                fontWeight: "bold",
+                                color: "text.secondary",
+                                textTransform: "uppercase",
+                              }}
                             >
                               {key.replace(/([A-Z])/g, " $1")}:
                             </Typography>
-                            <Typography variant="body2" sx={{ fontWeight: "medium" }}>
+                            <Typography
+                              variant="body2"
+                              sx={{
+                                fontWeight: "bold", // This makes the details bold
+                                color: "text.primary",
+                              }}
+                            >
                               {value}
                             </Typography>
                           </Box>
@@ -241,11 +255,14 @@ const PaymentOption = () => {
               <Box sx={{ mb: 4 }}>
                 <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
                   <CreditCard sx={{ color: "#ff9800", mr: 2, fontSize: 30 }} />
-                  <Typography variant="h5" sx={{ fontWeight: "bold", color: "#ff9800" }}>
+                  <Typography
+                    variant="h5"
+                    sx={{ fontWeight: "bold", color: "#ff9800" }}
+                  >
                     Credit/Debit Cards
                   </Typography>
                 </Box>
-                
+
                 <Paper
                   elevation={2}
                   sx={{
@@ -255,17 +272,22 @@ const PaymentOption = () => {
                     border: "2px dashed #ff9800",
                   }}
                 >
-                  <Typography variant="body2" sx={{ mb: 2, fontStyle: "italic" }}>
-                    💡 <strong>Note:</strong> All cards are accepted here. 3% extra charges apply for card payments.
+                  <Typography
+                    variant="body2"
+                    sx={{ mb: 2, fontStyle: "italic" }}
+                  >
+                    💡 <strong>Note:</strong> All cards are accepted here. 3%
+                    extra charges apply for card payments.
                   </Typography>
-                  
+
                   <Button
                     variant="contained"
                     href="https://rzp.io/l/Gn0nwLEnCL"
                     target="_blank"
                     rel="noopener noreferrer"
                     sx={{
-                      background: "linear-gradient(45deg, #ff9800 30%, #ff5722 90%)",
+                      background:
+                        "linear-gradient(45deg, #ff9800 30%, #ff5722 90%)",
                       borderRadius: 2,
                       px: 4,
                       py: 1,
@@ -288,27 +310,34 @@ const PaymentOption = () => {
 
               {/* ADDITIONAL INSTRUCTIONS */}
               <Box>
-                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2, color: "primary.main" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", mb: 2, color: "primary.main" }}
+                >
                   📋 Payment Instructions
                 </Typography>
                 <Grid container spacing={2}>
                   {[
                     "Local / at par AC Payee Cheque should be drawn in the name of Iconic Yatra",
                     "Cash payments at our office during office hours. Please collect receipts",
-                    "Booking subject to NEFT/RTGS transfers. Cheque clearance within 3 working days"
+                    "Booking subject to NEFT/RTGS transfers. Cheque clearance within 3 working days",
                   ].map((instruction, index) => (
-                    <Grid size={{xs:12, md:4}} key={index}>
+                    <Grid size={{ xs: 12, md: 4 }} key={index}>
                       <Paper
                         elevation={1}
                         sx={{
                           p: 2,
                           height: "100%",
                           textAlign: "center",
-                          background: "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
+                          background:
+                            "linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%)",
                           borderRadius: 2,
                         }}
                       >
-                        <Typography variant="body2" sx={{ fontWeight: "medium" }}>
+                        <Typography
+                          variant="body2"
+                          sx={{ fontWeight: "medium" }}
+                        >
                           {instruction}
                         </Typography>
                       </Paper>
@@ -321,7 +350,7 @@ const PaymentOption = () => {
         </Grid>
 
         {/* RIGHT SIDE - QR CODES */}
-        <Grid size={{xs:12, md:4}}>
+        <Grid size={{ xs: 12, md: 4 }}>
           <Card
             elevation={4}
             sx={{
@@ -335,7 +364,14 @@ const PaymentOption = () => {
             }}
           >
             <CardContent sx={{ p: 4, textAlign: "center" }}>
-              <Box sx={{ display: "flex", alignItems: "center", justifyContent: "center", mb: 3 }}>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  mb: 3,
+                }}
+              >
                 <QrCode sx={{ color: "primary.main", mr: 2, fontSize: 32 }} />
                 <Typography
                   variant="h5"
@@ -355,7 +391,7 @@ const PaymentOption = () => {
                   { src: PhonePay, name: "Phone Pay", color: "#5c29db" },
                   { src: GPay, name: "Google Pay", color: "#4285f4" },
                 ].map((qr, index) => (
-                  <Grid size={{xs:12, md:12}} key={index}>
+                  <Grid size={{ xs: 12, md: 12 }} key={index}>
                     <Paper
                       elevation={3}
                       sx={{
@@ -389,7 +425,14 @@ const PaymentOption = () => {
                           boxShadow: "0 4px 12px rgba(0,0,0,0.15)",
                         }}
                       />
-                      <Box sx={{ mt: 2, display: "flex", gap: 1, justifyContent: "center" }}>
+                      <Box
+                        sx={{
+                          mt: 2,
+                          display: "flex",
+                          gap: 1,
+                          justifyContent: "center",
+                        }}
+                      >
                         <Button
                           variant="outlined"
                           size="small"
@@ -425,7 +468,10 @@ const PaymentOption = () => {
                   border: "2px solid #bbdefb",
                 }}
               >
-                <Typography variant="h6" sx={{ fontWeight: "bold", mb: 1, color: "#1565c0" }}>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", mb: 1, color: "#1565c0" }}
+                >
                   💁 Need Help?
                 </Typography>
                 <Typography variant="body2" sx={{ mb: 2 }}>
@@ -435,7 +481,8 @@ const PaymentOption = () => {
                   variant="contained"
                   size="small"
                   sx={{
-                    background: "linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)",
+                    background:
+                      "linear-gradient(45deg, #2196f3 30%, #21cbf3 90%)",
                     borderRadius: 2,
                     fontWeight: "bold",
                   }}
