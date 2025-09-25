@@ -32,6 +32,8 @@ import {
 import HandshakeIcon from '@mui/icons-material/Handshake';
 import PublicIcon from '@mui/icons-material/Public';
 import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
+import aboutBanner  from "../assets/Banner/aboutBanner.jpeg";
+import about from "../assets/Banner/about.jpeg"
 
 const team = [
   {
@@ -68,7 +70,7 @@ const AboutUs = () => {
 
   useEffect(() => {
     if (inView) {
-      setIsVisible(true);
+      setIsVisible(true); 
     }
   }, [inView]);
 
@@ -77,8 +79,8 @@ const AboutUs = () => {
       {/* Hero Section with Parallax Effect */}
       <Box
         sx={{
-          backgroundImage:
-            "linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('https://images.pexels.com/photos/346885/pexels-photo-346885.jpeg')",
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(${aboutBanner})`,
+
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: isMobile ? "scroll" : "fixed",
@@ -239,7 +241,7 @@ const AboutUs = () => {
                   borderRadius: 4,
                   overflow: "hidden",
                   height: 400,
-                  backgroundImage: "url('https://images.pexels.com/photos/1450082/pexels-photo-1450082.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')",
+                  backgroundImage: `url(${about})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}

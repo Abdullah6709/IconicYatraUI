@@ -21,6 +21,7 @@ import {
 } from "@mui/icons-material";
 import React, { useState, useEffect } from "react";
 import Gellary from "../Data/Gellary";
+import galleryBanner from "../assets/Banner/galleryBanner.jpg"
 
 const ITEMS_PER_PAGE = 8;
 
@@ -97,7 +98,7 @@ function Gallery() {
           sx={{
             width: "100%",
             height: { xs: "60vh", sm: "70vh", md: "80vh" },
-            backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url("https://images.unsplash.com/photo-1514195037031-83d60ed3b448?q=80&w=871&auto=format&fit=crop&ixlib=rb-4.1.0")`,
+             backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(${galleryBanner})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed", // Parallax effect

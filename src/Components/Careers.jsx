@@ -18,6 +18,11 @@ import EmojiEventsIcon from "@mui/icons-material/EmojiEvents";
 import PeopleIcon from "@mui/icons-material/People";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { keyframes } from "@mui/system";
+import carrerBanner from "../assets/Banner/careersBanner.jpg";
+import teamImage1 from "../assets/Banner/banner1.jpg";
+import teamImage2 from "../assets/Banner/banner2.jpg";
+import teamImage3 from "../assets/Banner/banner3.jpg";
+import teamImage4 from "../assets/Banner/banner4.jpg";
 
 // Animation for floating elements
 const float = keyframes`
@@ -68,12 +73,20 @@ export default function CareersPage() {
     { title: "Content Creator / Blogger", type: "Part-Time", location: "Remote" },
   ];
 
+  // Array of different team images
+  const teamImages = [
+    teamImage1,
+    teamImage2,
+    teamImage3,
+    teamImage4
+  ];
+
   return (
     <Box>
       {/* Hero Section */}
       <Box
         sx={{
-          background: `linear-gradient(${alpha(theme.palette.primary.dark, 0.7)}, ${alpha(theme.palette.secondary.main, 0.7)}), url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e')`,
+          background: `linear-gradient(${alpha(theme.palette.primary.dark, 0.7)}, ${alpha(theme.palette.secondary.main, 0.7)}), url(${carrerBanner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: isMobile ? "scroll" : "fixed",
@@ -221,7 +234,7 @@ export default function CareersPage() {
           </Typography>
           <Grid container spacing={3} mt={2}>
             {jobs.map((job, i) => (
-              <Grid  size={{xs:12, md:6}} key={i}>
+              <Grid size={{xs:12, md:6}} key={i}>
                 <Card 
                   sx={{ 
                     p: 4, 
@@ -293,12 +306,12 @@ export default function CareersPage() {
           We believe in working hard, exploring often, and creating memories together.
         </Typography>
         <Grid container spacing={3} mt={2}>
-          {[1, 2, 3, 4].map((img, i) => (
+          {teamImages.map((image, i) => (
             <Grid size={{xs:12, sm:6, md:3}} key={i}>
               <Box
                 component="img"
-                src={`https://images.unsplash.com/photo-1514473778434-81c3f973eb4c?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,${i}`}
-                alt="team life"
+                src={image}
+                alt={`Team life at Iconic Yatra ${i+1}`}
                 sx={{ 
                   width: "100%", 
                   height: 250,

@@ -8,16 +8,24 @@ import {
 } from '@mui/material';
 import { Link as RouterLink } from 'react-router-dom';
 import PackageCard from '../Components/PackageCard';
+import img1 from "../assets/packageimg/internationalPackage1.png";
+import img2 from "../assets/packageimg/internationalPackage2.jpg"
+import img3 from "../assets/packageimg/internationalPackage3.png"
+import img4 from "../assets/packageimg/internationalPackage4.png"
+import img5 from "../assets/packageimg/internationalPackage5.png"
+import img6 from "../assets/packageimg/internationalPackage6.png"
+import img7 from "../assets/packageimg/internationalPackage4.png"
+import img8 from "../assets/packageimg/internationalPackage1.png"
 
 const packages = [
-  { id: '1', dpkg: '101', title: 'Europe', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_408/pkg_408_main.png?1751611781411' },
-  { id: '2', dpkg: '102', title: 'Thailand', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_75/pkg_75_main.jpg?1751613238511' },
-  { id: '3', dpkg: '103', title: 'Singapore', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_315/pkg_315_main.png?1751613328441' },
-  { id: '4', dpkg: '104', title: 'Singapore', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_314/pkg_314_main.png?1751613328441' },
-  { id: '5', dpkg: '105', title: 'Baku', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_212/pkg_212_main.png?1751612819850' },
-  { id: '6', dpkg: '106', title: 'Baku', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_211/pkg_211_main.png?1751612819850' },
-  { id: '7', dpkg: '107', title: 'LADAKH', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_211/pkg_211_main.png?1751612819850' },
-  { id: '8', dpkg: '108', title: 'LADAKH', image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_389/pkg_389_main.jpg?1751613511735' },
+  { id: '1', dpkg: '101', title: 'Europe', image: img1 },
+  { id: '2', dpkg: '102', title: 'Thailand', image: img2},
+  { id: '3', dpkg: '103', title: 'Singapore', image: img3 },
+  { id: '4', dpkg: '104', title: 'Singapore', image: img4 },
+  { id: '5', dpkg: '105', title: 'Baku', image: img5 },
+  { id: '6', dpkg: '106', title: 'Baku', image: img6 },
+  { id: '7', dpkg: '107', title: 'LADAKH', image: img7 },
+  { id: '8', dpkg: '108', title: 'Europe', image: img8 },
 ];
 
 const HolidaysPackages = () => {

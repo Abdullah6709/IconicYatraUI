@@ -10,26 +10,12 @@ import {
   Box
 } from '@mui/material';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
-import { useNavigate } from 'react-router-dom'; // For navigation on click
 
-/**
- * Reusable card displaying:
- *  - Image
- *  - Floating “Send Query” button
- *  - Title with location icon
- *  - Entire card clickable via CardActionArea
- */
-const PackageCard = ({ image, title, id, dpkg }) => {
-  const navigate = useNavigate();
-
-  const Click = () => {
-    navigate(`/package-details?id=${id}&Dpkg=${dpkg}`);
-  };
-
+const PackageCard = ({ image, title, onClick }) => {
   return (
-    <Card sx={{ width: 308, borderRadius: 2, boxShadow: 10, backgroundPosition:'center', }}>
+    <Card sx={{ width: 308, borderRadius: 2, boxShadow: 10, backgroundPosition: 'center' }}>
       <CardActionArea
-        onClick={Click}
+        onClick={onClick}
         sx={{ position: 'relative' }}
       >
         <CardMedia component="img" height="260" image={image} alt={title} />
@@ -46,12 +32,10 @@ const PackageCard = ({ image, title, id, dpkg }) => {
           display: 'flex',
           alignItems: 'center',
           color: '#fff',
-
-          
         }}
       >
-        <LocationOnIcon fontSize="small" />
-        <Typography variant="body2" sx={{  }}>
+        <LocationOnIcon fontSize="small" sx={{ mr: 0.5 }} />
+        <Typography variant="body2">
           {title}
         </Typography>
       </CardContent>
@@ -59,18 +43,7 @@ const PackageCard = ({ image, title, id, dpkg }) => {
   );
 };
 
-PackageCard.propTypes = {
-  image: PropTypes.string,
-  title: PropTypes.string,
-  id: PropTypes.string,
-  dpkg: PropTypes.string,
-};
 
-PackageCard.defaultProps = {
-  image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_392/pkg_392_main.png',
-  title: 'No title provided',
-  id: '20',
-  dpkg: '1',
-};
+
 
 export default PackageCard;

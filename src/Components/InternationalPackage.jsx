@@ -8,42 +8,48 @@ import {
   Grid,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import  img1 from "../assets/packageimg/internationalPackage1.png"
+import  img2 from "../assets/packageimg/internationalPackage2.jpg"
+import  img3 from "../assets/packageimg/internationalPackage3.png"
+import  img4 from "../assets/packageimg/internationalPackage4.png"
+import  img5 from "../assets/packageimg/internationalPackage5.png"
+import  img6 from "../assets/packageimg/internationalPackage6.png"
 
 const packages = [
   {
     id: 1,
     title: 'Maldives',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_408/pkg_408_main.png?1751611781411',
+    image: img1,
     queryLink: 'https://example.com/query/maldives',
   },
   {
     id: 2,
     title: 'Europe',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_75/pkg_75_main.jpg?1751613238511',
+    image: img2,
     queryLink: 'https://example.com/query/europe',
   },
   {
     id: 3,
     title: 'Thailand',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_315/pkg_315_main.png?1751613328441',
+    image: img3,
     queryLink: 'https://example.com/query/thailand',
   },
   {
     id: 4,
     title: 'Singapore',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_314/pkg_314_main.png?1751613328441',
+    image: img4,
     queryLink: 'https://example.com/query/singapore',
   },
   {
     id: 5,
     title: 'Bali',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_212/pkg_212_main.png?1751612819850',
+    image: img5,
     queryLink: 'https://example.com/query/bali',
   },
   {
     id: 6,
     title: 'Dubai',
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_211/pkg_211_main.png?1751612819850',
+    image: img6,
     queryLink: 'https://example.com/query/dubai',
   },
 ];

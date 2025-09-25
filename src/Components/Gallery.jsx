@@ -3,14 +3,23 @@ import Slider from 'react-slick';
 import { Box, Typography, Container } from '@mui/material';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-
+import  img1 from "../assets/Gellary/G1.jpeg";
+import  img2 from "../assets/Gellary/G11.jpg";
+import  img3 from "../assets/Gellary/G12.jpg"
+import  img4 from "../assets/Gellary/G9.jpg"
+import  img5 from "../assets/Gellary/G14.jpeg"
+import  img6 from "../assets/Gellary/G6.jpg"
+import  img7 from "../assets/Gellary/G18.jpg"
+import  img8 from "../assets/Gellary/G5.jpeg"
 const galleryImages = [
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_57/pkg_57_main.jpg?1751518453969',
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_20/pkg_20_main.png?1751518453969',
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_117/pkg_117_main.png?1751518453969',
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_392/pkg_392_main.png?1751518453969',
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_57/pkg_57_main.jpg?1751518453969',
-  'https://www.travserver.com/travelingfuns/uploads/packages/pkg_392/pkg_392_main.png?1751518453969',
+ img1,
+ img2,
+ img3,
+ img4,
+ img5,
+ img6,
+ img7,
+ img8
 ];
 
 const Gallery = () => {

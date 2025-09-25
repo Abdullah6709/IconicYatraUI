@@ -8,40 +8,46 @@ import {
   Grid,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
+import img1 from "../assets/packageimg/package1.png"
+import img2 from "../assets/packageimg/package2.png"
+import img3 from "../assets/packageimg/package3.png"
+import img4 from "../assets/packageimg/package4.jpg"
+import img5 from "../assets/packageimg/package5.png"
+import img6 from "../assets/packageimg/package6.png"
 
 const packages = [
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_392/pkg_392_main.png?1751518453969',
+    image:img1,
     title: 'Mussoorie -Rishikesh- Nainital',
     id: '1',
     dpkg: '1',
   },
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_117/pkg_117_main.png?1751518453969',
+    image: img2,
     title: '8N Amazing Nepal',
     id: '2',
     dpkg: '2',
   },
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_20/pkg_20_main.png?1751518453969',
+    image:img3,
     title: 'Manali Volvo 3 Nights Tour : Ex Delhi',
     id: '3',
     dpkg: '3',
   },
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_57/pkg_57_main.jpg?1751518453969',
+    image: img4,
     title: 'Explore Kerala',
     id: '4',
     dpkg: '4',
   },
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_117/pkg_117_main.png?1751518453969',
+    image: img5,
     title: '07 Nights / 08 Days Scenic Kerala',
     id: '5',
     dpkg: '5',
   },
   {
-    image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_20/pkg_20_main.png?1751518453969',
+    image: img6,
     title: 'Southern Hills 4N',
     id: '6',
     dpkg: '6',

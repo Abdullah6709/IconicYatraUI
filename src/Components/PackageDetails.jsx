@@ -1,230 +1,305 @@
-import React from 'react';
-import { useLocation, Link } from 'react-router-dom';
+// src/Components/PackageDetails.jsx
+import React, { useEffect, useState } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   Box,
-  Typography,
-  Container,
-  Button,
-  Tabs,
-  Tab,
   Paper,
+  Typography,
+  Grid,
   Breadcrumbs,
-  Link as MUILink
-} from '@mui/material';
-import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
-import ShareIcon from '@mui/icons-material/Share';
+  Link as MUILink,
+  Chip,
+  Button,
+  Container,
+  Divider,
+  List,
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  Card,
+  CardMedia,
+} from "@mui/material";
+import {
+  ArrowBack,
+  CalendarToday,
+  People,
+  Warning,
+  Schedule,
+  Hotel,
+} from "@mui/icons-material";
+import allDomesticPackageData from "../Data/Domestic/packageData";
 
-function useQuery() {
-  const { search } = useLocation();
-  return React.useMemo(() => new URLSearchParams(search), [search]);
-}
+const PackageDetail = () => {
+  const { packageId } = useParams();
+  const navigate = useNavigate();
+  const [packageData, setPackageData] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-const PackageDetails = () => {
-  const query = useQuery();
-  const id = query.get('id');
-  const dpkg = query.get('Dpkg');
+  useEffect(() => {
+    console.log("PackageDetail mounted with id:", packageId);
+    
+    if (packageId) {
+      // Find the package by ID (convert packageId to number)
+      const packageIdNum = parseInt(packageId, 10);
+      const foundPackage = allDomesticPackageData.find(
+        (pkg, index) => index === packageIdNum
+      );
+      
+      console.log("Found package:", foundPackage);
+      setPackageData(foundPackage);
+    }
+    
+    setLoading(false);
+  }, [packageId]);
+
+  const handleBackClick = () => {
+    navigate(-1); // Go back to previous page
+  };
+
+  if (loading) {
+    return (
+      <Box sx={{ 
+        display: "flex", 
+        justifyContent: "center", 
+        alignItems: "center", 
+        height: "50vh" 
+      }}>
+        <Typography variant="h6">Loading package details...</Typography>
+      </Box>
+    );
+  }
+
+  if (!packageData) {
+    return (
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        <Button 
+          startIcon={<ArrowBack />} 
+          onClick={handleBackClick}
+          sx={{ mb: 2 }}
+        >
+          Back
+        </Button>
+        
+        <Paper elevation={3} sx={{ p: 4, textAlign: "center" }}>
+          <Typography variant="h4" color="error" gutterBottom>
+            Package Not Found
+          </Typography>
+          <Typography variant="body1" sx={{ mb: 2 }}>
+            The package with ID "{packageId}" could not be found.
+          </Typography>
+          <Button 
+            variant="contained" 
+            component={Link} 
+            to="/domestic"
+          >
+            Browse All Packages
+          </Button>
+        </Paper>
+      </Container>
+    );
+  }
 
   return (
-    <Container maxWidth="xl" sx={{ background: '#eee', py: 4, width:'100vw' }}>
-      {/* Breadcrumb */}
-      <Paper elevation={1} sx={{ p: 2, mb: 2, mx: 1 }}>
-        <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 0.5 }}>
-          <MUILink underline="hover" color="inherit" component={Link} to="/">
-            Home
-          </MUILink>
+    <Box sx={{ backgroundColor: "#f5f5f5", minHeight: "100vh" }}>
+      <Container maxWidth="lg" sx={{ py: 4 }}>
+        {/* Back Button */}
+        <Button 
+          startIcon={<ArrowBack />} 
+          onClick={handleBackClick}
+          sx={{ mb: 2 }}
+          variant="outlined"
+        >
+          Back to Packages
+        </Button>
 
-          <MUILink underline="hover" color="inherit" component={Link} to="/international/all">
-            International
-          </MUILink>
+        {/* Breadcrumbs */}
+        <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <MUILink underline="hover" color="inherit" component={Link} to="/">
+              Home
+            </MUILink>
+            <MUILink underline="hover" color="inherit" component={Link} to="/domestic">
+              Domestic Packages
+            </MUILink>
+            <Typography color="text.primary">{packageData.title}</Typography>
+          </Breadcrumbs>
+        </Paper>
 
-          {/*  FIXED HERE: removed undeclared selectedDestination */}
-          <Typography color="text.primary">
-            Best of Kerala
-          </Typography>
-        </Breadcrumbs>
-      </Paper>
-
-      {/* About Section */}
-      <Box my={3}>
-        <Typography variant="h6" color="error" gutterBottom>
-          ABOUT
-        </Typography>
-        <Typography>
-          This is only tentative schedule for sightseeing and travel. Actual sightseeing may get affected due to weather, road conditions, local authority notices, shortage of timing, or off days.
-        </Typography>
-      </Box>
-
-      {/* Title + Validity */}
-      <Box display="flex" justifyContent="space-between" alignItems="center" flexWrap="wrap">
-        <Typography variant="h5" fontWeight="bold">
-          Best of Kerala 5N
-        </Typography>
-        <Box display="flex" alignItems="center" mt={1}>
-          <ShareIcon sx={{ mr: 1 }} />
-          <Typography variant="subtitle1" mr={1}>Valid Till :</Typography>
-          <CalendarMonthIcon sx={{ color: 'error.main', mr: 1 }} />
-          <Typography color="error">30/09/2025</Typography>
-        </Box>
-      </Box>
-
-      {/* Image + Sidebar */}
-      <Box mt={2} display="flex" flexDirection={{ xs: 'column', md: 'row' }} gap={3}>
-        <Box flex={1}>
-          <img
-            src="https://www.travserver.com/travelingfuns/uploads/packages/pkg_392/pkg_392_main.png"
-            alt="Package Preview"
-            style={{ width: '100%', borderRadius: 8 }}
+        {/* Package Header */}
+        <Card elevation={3} sx={{ mb: 4, overflow: "hidden" }}>
+          <CardMedia
+            component="img"
+            height="400"
+            image={packageData.headerImage}
+            alt={packageData.title}
+            sx={{ objectFit: "cover" }}
           />
-        </Box>
+          
+          <Box sx={{ p: 4 }}>
+            <Typography variant="h3" component="h1" gutterBottom color="primary">
+              {packageData.title}
+            </Typography>
+            
+            <Grid container spacing={3} sx={{ mb: 2 }}>
+              <Grid size={{xs:12, md:6}}>
+                <List dense>
+                  <ListItem>
+                    <ListItemIcon>
+                      <Schedule color="primary" />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary="Duration" 
+                      secondary={packageData.sightseeing} 
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <Hotel color="primary" />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary="Nights" 
+                      secondary={packageData.nights} 
+                    />
+                  </ListItem>
+                </List>
+              </Grid>
+              
+              <Grid size={{xs:12, md:6}}>
+                <List dense>
+                  <ListItem>
+                    <ListItemIcon>
+                      <CalendarToday color="primary" />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary="Valid Till" 
+                      secondary={packageData.validTill} 
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <People color="primary" />
+                    </ListItemIcon>
+                    <ListItemText 
+                      primary="Price Basis" 
+                      secondary={packageData.priceNote} 
+                    />
+                  </ListItem>
+                </List>
+              </Grid>
+            </Grid>
 
-        <Box flex={1}>
-          <Typography variant="subtitle1">Price Per Person</Typography>
-          <Typography variant="h6" color="error" gutterBottom>
-            Send Query
-          </Typography>
-          <Typography variant="body2">
-            Basis 2 person travelling together
-          </Typography>
-          <Typography variant="subtitle2" mt={2}>
-            <strong>Price is not valid during :</strong>
-          </Typography>
-          <Typography variant="body2">Diwali, New Year, Long Weekend</Typography>
-
-          <Typography variant="subtitle2" mt={2}>
-            <strong>Sightseeing:</strong> (5 Nights / 6 Days)
-          </Typography>
-          <Typography variant="body2">
-            1 N Kochi/Cochin, 2 N Munnar, 1 N Thekkady, 1 N Alleppey/Alappuzha
-          </Typography>
-
-          <Box mt={3}>
-            <Button variant="contained" color="primary" sx={{ mr: 2 }}>
-              Send Query
-            </Button>
-            <Button variant="outlined" color="secondary">
-              View On Map
-            </Button>
+            {/* Not Valid During */}
+            {packageData.notValidDuring && packageData.notValidDuring.length > 0 && (
+              <Box sx={{ mt: 2 }}>
+                <Typography variant="h6" gutterBottom sx={{ display: "flex", alignItems: "center" }}>
+                  <Warning sx={{ mr: 1, color: "warning.main" }} /> 
+                  Not Valid During:
+                </Typography>
+                <Box sx={{ display: "flex", flexWrap: "wrap", gap: 1 }}>
+                  {packageData.notValidDuring.map((period, index) => (
+                    <Chip 
+                      key={index} 
+                      label={period} 
+                      color="warning" 
+                      variant="outlined" 
+                      size="small"
+                    />
+                  ))}
+                </Box>
+              </Box>
+            )}
           </Box>
-        </Box>
-      </Box>
+        </Card>
 
-      {/* Tabs */}
-      <Box mt={5}>
-        <Tabs value={0} variant="scrollable" scrollButtons="auto">
-          <Tab label="Itinerary" />
-          <Tab label="Inclusion / Exclusion" />
-          <Tab label="Hotels / Price" />
-          <Tab label="Terms & Conditions" />
-        </Tabs>
+        {/* Itinerary Section */}
+        <Paper elevation={2} sx={{ p: 4 }}>
+          <Typography variant="h4" component="h2" gutterBottom color="primary" sx={{ mb: 3 }}>
+            Detailed Itinerary
+          </Typography>
+          
+          <Box sx={{ mb: 4 }}>
+            {packageData.days.map((day, index) => (
+              <Card key={index} elevation={2} sx={{ mb: 3, overflow: "hidden" }}>
+                <Box sx={{ p: 3 }}>
+                  <Typography variant="h5" component="h3" gutterBottom color="secondary">
+                    {day.day}
+                  </Typography>
+                  
+                  <Grid container spacing={3} alignItems="center">
+                    <Grid size={{xs:12, md:4}}>
+                      <CardMedia
+                        component="img"
+                        image={day.image}
+                        alt={day.day}
+                        sx={{ 
+                          borderRadius: 2,
+                          height: 200,
+                          objectFit: "cover"
+                        }}
+                      />
+                    </Grid>
+                    
+                    <Grid size={{xs:12, md:8}}>
+                      <Typography variant="body1" paragraph sx={{ lineHeight: 1.6 }}>
+                        {day.description}
+                      </Typography>
+                      
+                      {day.note && (
+                        <Paper 
+                          elevation={0} 
+                          sx={{ 
+                            p: 2, 
+                            backgroundColor: "primary.light",
+                            color: "primary.contrastText",
+                            borderRadius: 1
+                          }}
+                        >
+                          <Typography variant="body2" fontStyle="italic">
+                            <strong>Note:</strong> {day.note}
+                          </Typography>
+                        </Paper>
+                      )}
+                    </Grid>
+                  </Grid>
+                </Box>
+                
+                {index < packageData.days.length - 1 && (
+                  <Divider sx={{ mx: 3 }} />
+                )}
+              </Card>
+            ))}
+          </Box>
 
-        {/* Dummy itinerary example */}
-        <Paper elevation={2} sx={{ mt: 3, p: 2 }}>
-  {/* Title Section */}
-  <Paper elevation={3} sx={{ p: 2, mb: 2, backgroundColor: '#f5f5f5' }}>
-    <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-      Day 1 : Kochi Railway Station – Kochi (45Km / 1Hrs)
-    </Typography>
-  </Paper>
-
-  {/* Image + Text Side-by-Side */}
-  <Box
-    display="flex"
-    flexDirection={{ xs: 'column', md: 'row' }}
-    alignItems="flex-start"
-    gap={3}
-  >
-    {/* Left Side - Image */}
-    <Box
-      component="img"
-      src="https://www.travserver.com/travelingfuns/uploads/packages/packagetheme/jungle-theme.jpg?1751539251736"
-      alt="Day 1 Image"
-      sx={{
-        width: { xs: '100%', md: '50%' },
-        borderRadius: 2,
-        height: '50vh',
-        objectFit: 'cover',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
-      }}
-    />
-
-    {/* Right Side - Description */}
-    <Box flex={1}>
-      <Typography
-        gutterBottom
-        sx={{
-          textAlign: 'justify',
-          textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.1)',
-          fontSize: '1rem',
-        }}
-      >
-        <strong>Welcome!</strong> Today board our flight to one of the most
-        beautiful and elegant city of Paris – known for its haute couture,
-        renowned museums, breath-taking beautiful monuments and sensational
-        cabarets. On arrival collect your baggage and proceed outside where you
-        will be met by your professional tour manager – local Representative
-        who will later escort you to your hotel. Check in and relax in the
-        comforts of your hotel. Overnight stay at the hotel in Paris.{' '}
-        <strong>(Dinner)</strong>
-      </Typography>
+          {/* Call to Action */}
+          <Paper 
+            elevation={1} 
+            sx={{ 
+              p: 3, 
+              backgroundColor: "success.light",
+              color: "success.contrastText",
+              textAlign: "center"
+            }}
+          >
+            <Typography variant="h6" gutterBottom>
+              Ready to Book This Package?
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              Contact us for pricing and availability
+            </Typography>
+            <Button 
+              variant="contained" 
+              color="secondary" 
+              size="large"
+              component={Link}
+              to="/contact"
+            >
+              Contact Us Now
+            </Button>
+          </Paper>
+        </Paper>
+      </Container>
     </Box>
-  </Box>
-</Paper>
-<Paper elevation={2} sx={{ mt: 3, p: 2 }}>
-  {/* Title Section */}
-  <Paper elevation={3} sx={{ p: 2, mb: 2, backgroundColor: '#f5f5f5' }}>
-    <Typography variant="subtitle1" fontWeight="bold" gutterBottom>
-     Day 2 : Enjoy your fun filled day at Disneyland® Paris
-    </Typography>
-  </Paper>
-
-  {/* Image + Text Side-by-Side */}
-  <Box
-    display="flex"
-    flexDirection={{ xs: 'column', md: 'row' }}
-    alignItems="flex-start"
-    gap={3}
-  >
-    {/* Left Side - Image */}
-    <Box
-      component="img"
-      src="https://www.travserver.com/travelingfuns/uploads/packages/pkg_408/day_3.jpg?1751803798292"
-      alt="Day 1 Image"
-      sx={{
-        width: { xs: '100%', md: '50%' },
-        borderRadius: 2,
-        height: '50vh',
-        objectFit: 'cover',
-        boxShadow: '0px 4px 12px rgba(0, 0, 0, 0.2)',
-      }}
-    />
-
-    {/* Right Side - Description */}
-    <Box flex={1}>
-      <Typography
-        gutterBottom
-        sx={{
-          textAlign: 'justify',
-          textShadow: '0.5px 0.5px 1px rgba(0,0,0,0.1)',
-          fontSize: '1rem',
-        }}
-      >
-        <strong>Welcome!</strong> 
-Get ready for a day full of excitement at Disneyland Paris- a popular amusement park. Enjoy different kind of thrill rides and studio movies with your loved ones. You may choose between Disney Park, where fairy tales take flight across five incredible lands filled with classic attractions, shows and street parades with Disney Characters OR you may visit the Walt Disney Studios Park Studios and be astounded by the outstanding stunt shows, watch a film being made and see real-life sets used for creating blockbuster movies. Overnight stay at the hotel in Paris. (Breakfast, Packed Lunch, Dinner) (Important Note: Keeping in mind the logistical consideration the Tour Manager reserves the right to alter or change the itinerary. However, we will ensure that all the attractions are covered)
-        <strong>(Dinner)</strong>
-      </Typography>
-
-      <Typography mt={2}>
-        Kochi is a major port city on the southwest coast of India blessed with
-        beautiful sightseeing.
-      </Typography>
-    </Box>
-  </Box>
-</Paper>
-
-
-      </Box>
-    </Container>
   );
 };
 
-export default PackageDetails;
+export default PackageDetail;

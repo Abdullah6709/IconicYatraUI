@@ -5,8 +5,6 @@ import Layout from '../Components/Layout';
 
 import Payment from '../Pages/HeaderPages/Payment';
 import Service from '../Pages/HeaderPages/Service';
-// import News from '../Pages/HeaderPages/News';
-// import Admin from '../Pages/HeaderPages/Admin';
 import Home from '../Pages/HomePages/Home';
 import PackageCard from '../Components/PackageCard';
 import Holidays from '../Pages/HomePages/Holidays';
@@ -18,10 +16,10 @@ import TigerSafari from '../Pages/HomePages/TigerSafari';
 import Domestic from '../Pages/HomePages/Domestic';
 import International from '../Pages/HomePages/International';
 import SpecialPackages from '../Components/SpecialPackages';
-import PackageDetails from '../Components/PackageDetails';
+import PackageDetail from '../Components/PackageDetails'; // Make sure this path is correct
+
 import Support from '../Pages/HomePages/Support';
 import WhyChooseUs from '../Components/WhyChooseUs';
-// import HolidayCarousel from '../Components/HolidayCarousel';
 import DomesticPackage from '../Components/DomesticPackage';
 import HolidaysPackages from '../Components/HolidaysPackages';
 import Gallery from '../Components/Gallery';
@@ -33,15 +31,22 @@ import About from "../Components/About";
 import Gellary from "../Components/GellaryFooter";
 import Careers from "../Components/Careers";
 import Testimonials from "../Components/Testimonials"
+import CancellationRefundPolicy from "../Components/CancellationRefundPolicy";
+import InternationalPackageDetail from '../Components/InternationalPackageDetail';
 
 const MainRoutes = () => {
   return (
     <Routes>
+      {/* Exact paths first */}
       <Route path="/" element={<Layout><Home /></Layout>} />
+      <Route path="/login" element={<Login />} />
+      
+      {/* Package detail route - should come before other dynamic routes */}
+      <Route  path="/package/:packageId" element={<Layout><PackageDetail /></Layout>} />
+      
+      {/* Other specific routes */}
       <Route path="/payment" element={<Layout><Payment /></Layout>} />
       <Route path="/services" element={<Layout><Service /></Layout>} />
-      {/* <Route path="/news" element={<Layout><News /></Layout>} /> */}
-      {/* <Route path="/admin" element={<Layout><Admin /></Layout>} /> */}
       <Route path="/package-card" element={<Layout><PackageCard /></Layout>} />
       <Route path="/holidays" element={<Layout><Holidays /></Layout>} />
       <Route path="/testimonial" element={<Layout><Testimonial /></Layout>} />
@@ -49,11 +54,6 @@ const MainRoutes = () => {
       <Route path="/featured-packages" element={<Layout><FeaturedPackages /></Layout>} />
       <Route path="/all-latest-packages" element={<Layout><AllLatestPackages /></Layout>} />
       <Route path="/special-packages" element={<Layout><SpecialPackages /></Layout>} />
-      <Route path="/package-details" element={<Layout><PackageDetails /></Layout>} />
-      <Route path="/fixed/:destination" element={<Layout><FixDeparture /></Layout>} />
-      <Route path="/safari/:destination" element={<Layout><TigerSafari /></Layout>} />
-      <Route path="/domestic/:destination" element={<Layout><Domestic /></Layout>} />
-      <Route path="/international/:destination" element={<Layout><International /></Layout>} />
       <Route path="/support" element={<Layout><Support /></Layout>} />
       <Route path="/why-choose-us" element={<Layout><WhyChooseUs /></Layout>} />
       <Route path="/domestic-packages" element={<Layout><DomesticPackage /></Layout>} />
@@ -61,11 +61,25 @@ const MainRoutes = () => {
       <Route path="/all-packages" element={<Layout><AllHolidaysPackages /></Layout>} />
       <Route path="/yatra" element={<Layout><Yatra /></Layout>} />
       <Route path="/gallary" element={<Layout><Gallery /></Layout>} />
-      <Route path="/login" element={<Login/>} />
-      <Route path="/aboutus" element={<Layout><About/></Layout>} />
-      <Route path="/gallery" element={<Layout><Gellary/></Layout>} />
-       <Route path="/careers" element={<Layout><Careers /></Layout>} />
-        <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
+      <Route path="/aboutus" element={<Layout><About /></Layout>} />
+      <Route path="/gallery" element={<Layout><Gellary /></Layout>} />
+      <Route path="/careers" element={<Layout><Careers /></Layout>} />
+      <Route path="/testimonials" element={<Layout><Testimonials /></Layout>} />
+      <Route path="/cancellation-refundpolicy" element={<Layout><CancellationRefundPolicy /></Layout>} />
+      
+      {/* Dynamic routes - should come after specific routes */}
+      <Route path="/fixed/:destination" element={<Layout><FixDeparture /></Layout>} />
+      <Route path="/safari/:destination" element={<Layout><TigerSafari /></Layout>} />
+      <Route path="/domestic" element={<Layout><Domestic /></Layout>} />
+      <Route path="/domestic/:destination" element={<Layout><Domestic /></Layout>} />
+     <Route path="/international" element={<Layout><International /></Layout>} />
+<Route path="/international/:destination" element={<Layout><International /></Layout>} />
+<Route path="/internationalpackage/:packageId" element={<Layout><InternationalPackageDetail /></Layout>}
+/>
+
+      
+      {/* 404 route - should be last */}
+      <Route path="*" element={<Layout><div>Page Not Found</div></Layout>} />
     </Routes>
   );
 };

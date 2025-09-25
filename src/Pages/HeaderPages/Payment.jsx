@@ -10,6 +10,8 @@ import {
   CardContent,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import PhonePay from "../../assets/packageimg/QR1.png"
+import GPay from "../../assets/packageimg/QR2.png"
 
 const PaymentOption = () => {
   const navigate = useNavigate();
@@ -177,7 +179,7 @@ const PaymentOption = () => {
             >
               <Grid siz={{xs:12}} >
                 <img
-                  src="https://www.iconicyatra.com/assets/images/QR1.png"
+                  src={PhonePay}
                   alt="PhonePe QR"
                   style={{
                     maxWidth: "100%",
@@ -188,7 +190,7 @@ const PaymentOption = () => {
               </Grid>
               <Grid size={{xs:12}}  mt={5} >
                 <img
-                  src="https://www.iconicyatra.com/assets/images/QR2.png"
+                  src={GPay}
                   alt="GPay QR"
                   style={{
                     maxWidth: "100%",

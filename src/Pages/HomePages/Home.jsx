@@ -3,6 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import PackageCard from '../../Components/PackageCard';
 
+
 import {
   Typography,
   Box,
@@ -24,7 +25,7 @@ import Gallery from '../../Components/Gallery';
 import img1 from '../../assets/Banner/banner1.jpg'
 import img2 from '../../assets/Banner/banner2.jpg'
 import img3 from '../../assets/Banner/banner3.jpg'
-import img4 from '../../assets/Banner/banner4.jpg'
+//import img4 from '../../assets/Banner/banner4.jpg'
 
 const Home = () => {
   return (
@@ -65,7 +66,7 @@ const Home = () => {
               <Paper elevation={24} sx={{ p: 3, borderRadius: 3, backgroundColor: 'rgba(0,0,0,0.4)', backdropFilter: 'blur(2px)' }}>
                 <Typography variant="h4" sx={{ fontWeight: 600, color: 'white' }}>Summer Special</Typography>
                 <Typography variant="h5" sx={{ color: 'white', mb: 2 }}>4 Nights / 5 Days</Typography>
-                <a href="https://www.iconicyatra.com/package/packagelist.html?SectorId=5&PkgType=Theme" className="btn btn-warning btn-lg" target="_blank" rel="noopener noreferrer">
+                <a className="btn btn-warning btn-lg" target="_blank" rel="noopener noreferrer">
                   Book Now
                 </a>
               </Paper>

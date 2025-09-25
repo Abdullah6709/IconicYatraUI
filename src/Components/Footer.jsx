@@ -73,7 +73,7 @@ const Footer = () => {
             IMPORTANT LINKS
           </Typography>
           <Stack spacing={1} alignItems={{ md: 'flex-start' }}>
-            {['Gujarat', 'Himachal', 'Kashmir', 'Chardham', 'Kerala', 'Terms & Conditions', 'Careers'].map((link, idx) => (
+            {['Gujarat', 'Himachal', 'Kashmir', 'Chardham', 'Kerala', ' Cancellation & Refund Policy', 'Careers'].map((link, idx) => (
               <Link
                 key={idx}
                 component={RouterLink}
@@ -118,7 +118,7 @@ const Footer = () => {
             <Box sx={{ display: 'flex', alignItems: 'flex-start' }}>
               <LocationOnIcon sx={{ mr: 1 }} />
               <Typography variant="body2" sx={{ lineHeight: 1.5 }}>
-                Rayos Building, Sector 63 Rd, C Block, Sector 63, Noida, Uttar Pradesh 201301
+                B-25, 2nd Floor Sector -64, Noida, Uttar Pradesh 201301
               </Typography>
             </Box>
             <Box sx={{ display: 'flex', alignItems: 'center' }}>

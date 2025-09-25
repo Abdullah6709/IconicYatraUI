@@ -13,6 +13,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { Email, Lock, Google, Facebook, Apple } from "@mui/icons-material";
 import ArrowCircleLeftIcon from "@mui/icons-material/ArrowCircleLeft";
+import loginBanner from "../../assets/Banner/loginBanner.jpg";
 
 const LoginPage = () => {
   const navigate = useNavigate();
@@ -23,8 +24,7 @@ const LoginPage = () => {
       <Grid
         size={{ xs: 12, md: 6.5 }}
         sx={{
-          backgroundImage:
-            "url('https://damoclesjournal.com/wp-content/uploads/2022/02/0x0.jpg')",
+         backgroundImage: `url(${loginBanner})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",

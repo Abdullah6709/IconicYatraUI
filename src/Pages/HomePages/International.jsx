@@ -1,120 +1,119 @@
-// src/Pages/HomePages/FixDeparture.jsx
-
-import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+// src/Pages/HomePages/International.jsx
+import React, { useState, useEffect } from "react";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import {
   Box,
   Paper,
   Typography,
   Grid,
-  MenuItem,
-  Select,
-  FormControl,
-  InputLabel,
   Breadcrumbs,
-  Link as MUILink
-} from '@mui/material';
-import PackageCard from '../../Components/PackageCard'; //  adjust path if needed
+  Link as MUILink,
+  Container,
+} from "@mui/material";
+import PackageCard from "../../Components/PackageCard";
+import allInternationalPackageData from "../../Data/International/packageData";
 
 const International = () => {
-  const { destination } = useParams(); //  Get URL param
-  const [selectedDestination, setSelectedDestination] = useState(destination || 'All');
-
-  // 🔹 Sample Package Data
-  const packages = [
-    {
-      id: 1,
-      title: 'Maldives',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_408/pkg_408_main.png?1751611781411',
-      class:"img-responsive img-rounded",
-      queryLink: 'https://example.com/query/europe'
-    },
-    {
-      id: 2,
-      title: 'Europe',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_75/pkg_75_main.jpg?1751613238511',
-      queryLink: 'https://example.com/query/thailand'
-    },
-    {
-      id: 3,
-      title: 'Thailand',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_315/pkg_315_main.png?1751613328441',
-      queryLink: 'https://example.com/query/singapore'
-    },
-     {
-      id: 4,
-      title: 'Singapore',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_314/pkg_314_main.png?1751613328441',
-      queryLink: 'https://example.com/query/singapore'
-    },
-    {
-      id: 5,
-      title: 'Bali',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_212/pkg_212_main.png?1751612819850',
-      queryLink: 'https://example.com/query/baku'
-    },
- {
-      id: 6,
-      title: 'Dubai',
-      image: 'https://www.travserver.com/travelingfuns/uploads/packages/pkg_211/pkg_211_main.png?1751612819850',
-      queryLink: 'https://example.com/query/baku'
-    },
-  
-  ];
-
-  const destinations = ['All', ...new Set(packages.map(pkg => pkg.title))];
+  const { destination } = useParams();
+  const navigate = useNavigate();
+  const [selectedDestination, setSelectedDestination] = useState("All");
 
   useEffect(() => {
-    if (destination) {
-      const formatted = destination.replace(/-/g, ' ').toLowerCase();
-      const matched = destinations.find((d) => d.toLowerCase() === formatted);
-      setSelectedDestination(matched || 'All');
+    if (destination && destination !== "All") {
+      const formattedDestination = destination.replace(/-/g, " ").toLowerCase();
+      const matched = allInternationalPackageData.find(
+        (pkg) => pkg.title.toLowerCase() === formattedDestination
+      );
+      setSelectedDestination(matched ? matched.title : "All");
+    } else {
+      setSelectedDestination("All");
     }
   }, [destination]);
 
   const filteredPackages =
-    selectedDestination === 'All'
-      ? packages
-      : packages.filter((pkg) => pkg.title.toLowerCase() === selectedDestination.toLowerCase());
+    selectedDestination === "All"
+      ? allInternationalPackageData
+      : allInternationalPackageData.filter(
+          (pkg) => pkg.title.toLowerCase() === selectedDestination.toLowerCase()
+        );
+
+  // ✅ Updated navigation
+  const handleCardClick = (packageId) => {
+    navigate(`/internationalpackage/${packageId}`);
+  };
 
   return (
-    <Box sx={{ p: 3,backgroundColor: '#f5f5f5' }}>
-      {/*  Breadcrumb */}
-      <Paper elevation={1} sx={{ p: 2, mb: 2, mx: 1,  }}>
-      <Breadcrumbs aria-label="breadcrumb" sx={{ mb: 0.5 }}>
-        <MUILink underline="hover" color="inherit" component={Link} to="/">
-          Home
-        </MUILink>
+    <Box sx={{ backgroundColor: "#f5f5f5", minHeight: "100vh", py: 4 }}>
+      <Container maxWidth="lg">
+        {/* Breadcrumbs */}
+        <Paper elevation={1} sx={{ p: 2, mb: 3 }}>
+          <Breadcrumbs aria-label="breadcrumb">
+            <MUILink underline="hover" color="inherit" component={Link} to="/">
+              Home
+            </MUILink>
+            <MUILink underline="hover" color="inherit" component={Link} to="/international">
+              International Packages
+            </MUILink>
+            <Typography color="text.primary">
+              {selectedDestination === "All" ? "All Packages" : selectedDestination}
+            </Typography>
+          </Breadcrumbs>
+        </Paper>
 
-        <MUILink underline="hover" color="inherit" component={Link} to="/international/all">
-          International
-        </MUILink>
-
-        <Typography color="text.primary">
-          {selectedDestination}
+        {/* Title */}
+        <Typography
+          variant="h4"
+          component="h1"
+          gutterBottom
+          sx={{
+            textAlign: "center",
+            mb: 4,
+            color: "primary.main",
+            fontWeight: "bold",
+          }}
+        >
+          {selectedDestination === "All" ? "All International Packages" : selectedDestination}
         </Typography>
-      </Breadcrumbs>
-      </Paper>
-      {/*  Dropdown to change destination */}
-      
-      {/* Cards Grid */}
-      <Grid container spacing={2} sx={{backgroundPosition: 'center', justifyContent: 'center',textAlign: 'center',py:3}}>
+
+        {/* Package Grid */}
         {filteredPackages.length > 0 ? (
-          filteredPackages.map((pkg) => (
-            <Grid item key={pkg.id}>
-              <PackageCard
-                image={pkg.image}
-                title={pkg.title}
-                queryLink={pkg.queryLink}
-              />
-            </Grid>
-          ))
+          <Grid container spacing={3} justifyContent="center">
+            {filteredPackages.map((pkg) => (
+              <Grid item key={pkg.id} xs={12} sm={6} md={4} lg={3}>
+                <PackageCard
+                  image={pkg.headerImage}
+                  title={pkg.title}
+                  duration={pkg.sightseeing}
+                  priceNote={pkg.priceNote}
+                  onClick={() => handleCardClick(pkg.id)}
+                />
+              </Grid>
+            ))}
+          </Grid>
         ) : (
-          <Typography variant="h6" sx={{ mt: 4 }}>
-            No result found.
-          </Typography>
+          <Paper elevation={3} sx={{ p: 4, textAlign: "center" }}>
+            <Typography variant="h5" color="text.secondary">
+              No packages found for "{selectedDestination}"
+            </Typography>
+            <Typography variant="body1" sx={{ mt: 1 }}>
+              Please try selecting a different destination filter.
+            </Typography>
+          </Paper>
         )}
-      </Grid>
+
+        {/* Total Packages Count */}
+        <Typography
+          variant="body2"
+          color="text.secondary"
+          sx={{
+            textAlign: "center",
+            mt: 4,
+            fontStyle: "italic",
+          }}
+        >
+          Showing {filteredPackages.length} of {allInternationalPackageData.length} packages
+        </Typography>
+      </Container>
     </Box>
   );
 };
