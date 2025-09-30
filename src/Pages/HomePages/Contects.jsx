@@ -193,8 +193,8 @@ const ContactUs = () => {
                     </Box>
                     <Box>
                       <Typography fontWeight="bold" variant="h6">Phone Numbers</Typography>
-                      <Typography sx={{ mt: 0.5 }}>+91 1204099066</Typography>
-                      <Typography>+91 9696974038</Typography>
+                      <Typography sx={{ mt: 0.5 }}>+91 7053900957</Typography>
+                      <Typography>01204582960</Typography>
                     </Box>
                   </Stack>
 

@@ -28,12 +28,19 @@ import {
   LinkedIn,
   Visibility,
   Flag,
+  Security,
+  AutoAwesome,
+  Nature,
+  TrendingUp,
+  Lightbulb,
 } from "@mui/icons-material";
-import HandshakeIcon from '@mui/icons-material/Handshake';
-import PublicIcon from '@mui/icons-material/Public';
-import CrisisAlertIcon from '@mui/icons-material/CrisisAlert';
-import aboutBanner  from "../assets/Banner/aboutBanner.jpeg";
-import about from "../assets/Banner/about.jpeg"
+import HandshakeIcon from "@mui/icons-material/Handshake";
+import PublicIcon from "@mui/icons-material/Public";
+import CrisisAlertIcon from "@mui/icons-material/CrisisAlert";
+import aboutBanner from "../assets/Banner/aboutBanner.jpeg";
+import about from "../assets/Banner/about.jpeg";
+// Add this import for the new image
+import legendaryTravel from "../assets/Banner/legendary-travel.jpg";
 
 const team = [
   {
@@ -57,9 +64,49 @@ const team = [
 ];
 
 const values = [
-  { icon: <FlightTakeoff sx={{ fontSize: 40 }} />, title: "Adventure", description: "Creating unforgettable experiences" },
-  { icon: <Public sx={{ fontSize: 40 }} />, title: "Global Reach", description: "Connecting you to worldwide destinations" },
-  { icon: <EmojiPeople sx={{ fontSize: 40 }} />, title: "Personalized", description: "Tailored journeys just for you" },
+  {
+    icon: <FlightTakeoff sx={{ fontSize: 40 }} />,
+    title: "Adventure & Discovery",
+    description:
+      "Exploring new horizons and creating stories that last a lifetime",
+  },
+  {
+    icon: <Public sx={{ fontSize: 40 }} />,
+    title: "Cultural Connection",
+    description: "Fostering cultural understanding and authentic experiences",
+  },
+  {
+    icon: <EmojiPeople sx={{ fontSize: 40 }} />,
+    title: "Personalized Service",
+    description: "Tailored itineraries that cater to every traveler's needs",
+  },
+];
+
+const goals = [
+  {
+    icon: <CrisisAlertIcon sx={{ fontSize: 40 }} />,
+    title: "Tailor-Made Experiences",
+    description:
+      "Create customized tour packages that suit diverse interests and budgets, ensuring every journey is unique and personal.",
+  },
+  {
+    icon: <Security sx={{ fontSize: 40 }} />,
+    title: "Hassle-Free Travel",
+    description:
+      "Provide seamless, safe, and enjoyable travel experiences from start to finish with meticulous attention to detail.",
+  },
+  {
+    icon: <Lightbulb sx={{ fontSize: 40 }} />,
+    title: "Continuous Innovation",
+    description:
+      "Continuously enhance our services with cutting-edge technology to exceed customer expectations.",
+  },
+  {
+    icon: <Nature sx={{ fontSize: 40 }} />,
+    title: "Sustainable Tourism",
+    description:
+      "Promote responsible tourism practices that respect local communities and preserve environments.",
+  },
 ];
 
 const AboutUs = () => {
@@ -70,7 +117,7 @@ const AboutUs = () => {
 
   useEffect(() => {
     if (inView) {
-      setIsVisible(true); 
+      setIsVisible(true);
     }
   }, [inView]);
 
@@ -80,7 +127,6 @@ const AboutUs = () => {
       <Box
         sx={{
           backgroundImage: `linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url(${aboutBanner})`,
-
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundAttachment: isMobile ? "scroll" : "fixed",
@@ -95,19 +141,19 @@ const AboutUs = () => {
         <Container sx={{ position: "relative", zIndex: 2 }}>
           <Chip
             icon={<Star color="white" />}
-            label="Since 2013"
-            sx={{ 
-              bgcolor: "rgba(255,255,255,0.2)", 
-              color: "white", 
-              mb: 3, 
+            label="Years of Excellence"
+            sx={{
+              bgcolor: "rgba(255,255,255,0.2)",
+              color: "white",
+              mb: 3,
               backdropFilter: "blur(10px)",
               fontSize: "1rem",
               py: 2,
             }}
           />
-          <Typography 
-            variant="h2" 
-            fontWeight="bold" 
+          <Typography
+            variant="h2"
+            fontWeight="bold"
             gutterBottom
             sx={{
               fontSize: { xs: "2.5rem", md: "3.5rem" },
@@ -117,23 +163,94 @@ const AboutUs = () => {
           >
             About Iconic Yatra
           </Typography>
-          <Typography 
-            variant="h5" 
-            maxWidth="800px" 
+          <Typography
+            variant="h5"
+            maxWidth="800px"
             mx="auto"
             sx={{
               fontWeight: 300,
               textShadow: "1px 1px 2px rgba(0,0,0,0.5)",
+              lineHeight: 1.6,
             }}
           >
-            We are more than just a travel agency. We craft unforgettable
-            journeys, connecting you to the world's most iconic destinations.
+            Welcome to Iconic Yatra – where every journey becomes an
+            unforgettable memory!
           </Typography>
         </Container>
       </Box>
 
-      {/* Mission Section */}
+      {/* Introduction Section - Updated with Image on Left */}
       <Container sx={{ py: 8 }}>
+        <Box
+          sx={{
+            textAlign: "center",
+          }}
+        >
+          <Typography
+            variant="h3"
+            fontWeight="bold"
+            gutterBottom
+            color="primary"
+            sx={{ mb: 3 }}
+          >
+            Where Travel Becomes Legendary
+          </Typography>
+        </Box>
+        <Grid container spacing={6} alignItems="center">
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Paper
+              elevation={4}
+              sx={{
+                borderRadius: 4,
+                overflow: "hidden",
+                height: 400,
+                backgroundImage: `url(${legendaryTravel})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            />
+          </Grid>
+          <Grid size={{ xs: 12, md: 6 }}>
+            <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ lineHeight: 1.4, mb: 2 }}
+              >
+                Welcome to Iconic Yatra – where every journey becomes an
+                unforgettable memory! We are a premier travel company
+                specializing in domestic and international tour packages,
+                dedicated to providing experiences that combine comfort,
+                adventure, and cultural discovery.
+              </Typography>
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ lineHeight: 1.4, mb: 2 }}
+              >
+                At Iconic Yatra, we believe that travel is more than visiting
+                places—it's about exploring new horizons, connecting with
+                people, and creating stories that last a lifetime. With years of
+                expertise and a passionate team of travel professionals, we
+                design customized itineraries that cater to every traveler's
+                needs.
+              </Typography>
+              <Typography
+                variant="h6"
+                color="text.secondary"
+                sx={{ lineHeight: 1.4 }}
+              >
+                From serene retreats and historical explorations to
+                adrenaline-filled adventures, our packages ensure a seamless and
+                enriching travel experience.
+              </Typography>
+            </Box>
+          </Grid>
+        </Grid>
+      </Container>
+
+      {/* Mission Section */}
+      <Container sx={{ py: 4 }}>
         <Box
           sx={{
             textAlign: "center",
@@ -155,16 +272,18 @@ const AboutUs = () => {
             color="text.secondary"
             sx={{ lineHeight: 1.8 }}
           >
-            At Iconic Yatra, our mission is to create meaningful travel
-            experiences that go beyond sightseeing. We believe travel is about
-            culture, adventure, and memories that last a lifetime.
+            To provide exceptional and personalized travel experiences that
+            inspire exploration, foster cultural understanding, and create
+            lifelong memories. We are committed to delivering unmatched service,
+            innovative itineraries, and meticulous attention to detail, ensuring
+            every journey is enjoyable, safe, and unforgettable.
           </Typography>
         </Box>
 
         {/* Values Grid */}
         <Grid container spacing={4} sx={{ mt: 2 }}>
           {values.map((value, index) => (
-            <Grid size={{xs:12, md:4}} key={index}>
+            <Grid size={{ xs: 12, md: 4 }} key={index}>
               <Card
                 sx={{
                   textAlign: "center",
@@ -204,37 +323,70 @@ const AboutUs = () => {
       <Box sx={{ py: 8, bgcolor: alpha(theme.palette.primary.light, 0.1) }}>
         <Container>
           <Grid container alignItems="center" spacing={6}>
-            <Grid size={{xs:12, md:6}}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Box sx={{ textAlign: { xs: "center", md: "left" } }}>
                 <Chip
-                  icon={<Visibility  color="white" />}
+                  icon={<Visibility color="white" />}
                   label="Our Vision"
-                  sx={{ 
-                    bgcolor: "primary.main", 
-                    color: "white", 
+                  sx={{
+                    bgcolor: "primary.main",
+                    color: "white",
                     mb: 3,
                     fontSize: "1rem",
                     py: 1.5,
                     px: 2,
                   }}
                 />
-                <Typography variant="h3" fontWeight="bold" gutterBottom color="primary">
+                <Typography
+                  variant="h3"
+                  fontWeight="bold"
+                  gutterBottom
+                  color="primary"
+                >
                   Shaping the Future of Travel
                 </Typography>
-                <Typography variant="h6" color="text.secondary" sx={{ lineHeight: 1.8, mb: 3 }}>
-                  We envision a world where travel transcends boundaries and creates meaningful 
-                  connections between cultures. Our vision is to be the leading force in sustainable 
-                  tourism, making extraordinary experiences accessible to all while preserving 
-                  the beauty and heritage of our destinations for future generations.
+                <Typography
+                  variant="h6"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.8, mb: 3 }}
+                >
+                  To become a globally recognized travel company, renowned for
+                  innovation, reliability, and excellence in customer service.
+                  We envision a world where every traveler experiences the true
+                  essence of destinations, connecting deeply with cultures,
+                  nature, and people.
+                </Typography>
+                <Typography
+                  variant="h6"
+                  color="text.secondary"
+                  sx={{ lineHeight: 1.8, mb: 3 }}
+                >
+                  Through continuous improvement, adoption of cutting-edge
+                  technology, and sustainable travel practices, Iconic Yatra
+                  strives to transform the travel experience, making us the
+                  preferred choice for authentic, memorable, and inspiring
+                  journeys.
                 </Typography>
                 <Box sx={{ display: "flex", gap: 2, flexWrap: "wrap" }}>
-                  <Chip label="Sustainable Tourism" variant="outlined" color="primary" />
-                  <Chip label="Cultural Exchange" variant="outlined" color="primary" />
-                  <Chip label="Global Community" variant="outlined" color="primary" />
+                  <Chip
+                    label="Global Recognition"
+                    variant="outlined"
+                    color="primary"
+                  />
+                  <Chip
+                    label="Cultural Connection"
+                    variant="outlined"
+                    color="primary"
+                  />
+                  <Chip
+                    label="Sustainable Innovation"
+                    variant="outlined"
+                    color="primary"
+                  />
                 </Box>
               </Box>
             </Grid>
-            <Grid size={{xs:12, md:6}}>
+            <Grid size={{ xs: 12, md: 6 }}>
               <Paper
                 elevation={4}
                 sx={{
@@ -256,69 +408,75 @@ const AboutUs = () => {
         <Box sx={{ textAlign: "center", mb: 6 }}>
           <Chip
             icon={<Flag color="white" />}
-            label="Our Goals"
-            sx={{ 
-              bgcolor: "primary.main", 
-              color: "white", 
+            label="Our Goals & Commitments"
+            sx={{
+              bgcolor: "primary.main",
+              color: "white",
               mb: 3,
               fontSize: "1rem",
               py: 1.5,
               px: 2,
             }}
           />
-          <Typography variant="h3" fontWeight="bold" gutterBottom color="primary">
+          <Typography
+            variant="h3"
+            fontWeight="bold"
+            gutterBottom
+            color="primary"
+          >
             Our Commitment to Excellence
           </Typography>
-          <Typography variant="h6" color="text.secondary" maxWidth="800px" mx="auto">
-            We are dedicated to achieving these key objectives to ensure we deliver exceptional value to our travelers
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            maxWidth="800px"
+            mx="auto"
+          >
+            We are dedicated to achieving these key objectives to ensure we
+            deliver exceptional value and unforgettable experiences to our
+            travelers
           </Typography>
         </Box>
-        
+
         <Grid container spacing={4}>
-          <Grid size={{xs:12, md:4}}>
-            <Card sx={{ p: 3, borderRadius: 3, textAlign: "center", height: "100%" }}>
-              <Box sx={{ fontSize: 60, color: "primary.main", mb: 2 }}><CrisisAlertIcon fontSize="auto" /></Box>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
-                Customer Satisfaction
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Maintain a 98% customer satisfaction rate through personalized service and 
-                attention to detail in every journey we curate.
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid size={{xs:12, md:4}}>
-            <Card sx={{ p: 3, borderRadius: 3, textAlign: "center", height: "100%" }}>
-              <Box sx={{ fontSize: 60, color: "primary.main", mb: 2 }}><PublicIcon fontSize="auto"/></Box>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
-                Sustainable Expansion
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Expand our destinations to 75+ countries by 2025 while implementing 
-                eco-friendly travel practices across all our operations.
-              </Typography>
-            </Card>
-          </Grid>
-          <Grid size={{xs:12, md:4}}>
-            <Card sx={{ p: 3, borderRadius: 3, textAlign: "center", height: "100%" }}>
-              <Box sx={{ fontSize: 60, color: "primary.main", mb: 2 }}><HandshakeIcon fontSize="auto"/></Box>
-              <Typography variant="h5" fontWeight="bold" gutterBottom>
-                Community Impact
-              </Typography>
-              <Typography variant="body1" color="text.secondary">
-                Support local communities in our destinations by directing 5% of 
-                profits toward community development and cultural preservation projects.
-              </Typography>
-            </Card>
-          </Grid>
+          {goals.map((goal, index) => (
+            <Grid size={{ xs: 12, md: 6 }} key={index}>
+              <Card
+                sx={{
+                  p: 3,
+                  borderRadius: 3,
+                  height: "100%",
+                  transition: "transform 0.3s, box-shadow 0.3s",
+                  "&:hover": {
+                    transform: "translateY(-4px)",
+                    boxShadow: 4,
+                  },
+                }}
+              >
+                <Box sx={{ display: "flex", alignItems: "flex-start", gap: 3 }}>
+                  <Box sx={{ color: "primary.main", flexShrink: 0 }}>
+                    {goal.icon}
+                  </Box>
+                  <Box>
+                    <Typography variant="h5" fontWeight="bold" gutterBottom>
+                      {goal.title}
+                    </Typography>
+                    <Typography variant="body1" color="text.secondary">
+                      {goal.description}
+                    </Typography>
+                  </Box>
+                </Box>
+              </Card>
+            </Grid>
+          ))}
         </Grid>
       </Container>
 
       {/* Stats Section */}
-      <Box 
-        sx={{ 
-          bgcolor: "primary.main", 
-          color: "white", 
+      <Box
+        sx={{
+          bgcolor: "primary.main",
+          color: "white",
           py: 8,
           position: "relative",
           overflow: "hidden",
@@ -332,7 +490,8 @@ const AboutUs = () => {
             left: 0,
             width: "100%",
             height: "100%",
-            background: "linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 100%)",
+            background:
+              "linear-gradient(45deg, rgba(0,0,0,0.1) 0%, transparent 100%)",
           }}
         />
         <Container sx={{ position: "relative" }}>
@@ -347,7 +506,7 @@ const AboutUs = () => {
           </Typography>
           <Grid container spacing={4} textAlign="center">
             {/* Years of Excellence */}
-            <Grid size={{xs:12, md:4}}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography variant="h2" fontWeight="bold">
                 {isVisible && <CountUp end={10} duration={2} />}+
               </Typography>
@@ -357,7 +516,7 @@ const AboutUs = () => {
             </Grid>
 
             {/* Happy Travelers */}
-            <Grid size={{xs:12, md:4}}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography variant="h2" fontWeight="bold">
                 {isVisible && <CountUp end={5000} duration={3} />}+
               </Typography>
@@ -367,7 +526,7 @@ const AboutUs = () => {
             </Grid>
 
             {/* Destinations Covered */}
-            <Grid size={{xs:12, md:4}}>
+            <Grid size={{ xs: 12, md: 4 }}>
               <Typography variant="h2" fontWeight="bold">
                 {isVisible && <CountUp end={50} duration={2.5} />}+
               </Typography>
@@ -382,16 +541,27 @@ const AboutUs = () => {
       {/* Team Section */}
       <Container sx={{ py: 8 }}>
         <Box sx={{ textAlign: "center", mb: 6 }}>
-          <Typography variant="h3" fontWeight="bold" gutterBottom color="primary">
+          <Typography
+            variant="h3"
+            fontWeight="bold"
+            gutterBottom
+            color="primary"
+          >
             Meet Our Team
           </Typography>
-          <Typography variant="h6" color="text.secondary" maxWidth="600px" mx="auto">
+          <Typography
+            variant="h6"
+            color="text.secondary"
+            maxWidth="600px"
+            mx="auto"
+          >
             Passionate travel experts dedicated to crafting your perfect journey
+            and turning your travel dreams into reality
           </Typography>
         </Box>
         <Grid container spacing={4} justifyContent="center">
           {team.map((member, i) => (
-            <Grid  size={{xs:12, sm:6, md:4}} key={i}>
+            <Grid size={{ xs: 12, sm: 6, md: 4 }} key={i}>
               <Card
                 sx={{
                   textAlign: "center",
@@ -399,8 +569,8 @@ const AboutUs = () => {
                   borderRadius: 4,
                   boxShadow: 3,
                   transition: "transform 0.3s, box-shadow 0.3s",
-                  "&:hover": { 
-                    transform: "translateY(-8px)", 
+                  "&:hover": {
+                    transform: "translateY(-8px)",
                     boxShadow: 6,
                   },
                 }}
@@ -408,10 +578,10 @@ const AboutUs = () => {
                 <Avatar
                   src={member.img}
                   alt={member.name}
-                  sx={{ 
-                    width: 120, 
-                    height: 120, 
-                    mx: "auto", 
+                  sx={{
+                    width: 120,
+                    height: 120,
+                    mx: "auto",
                     mb: 2,
                     border: "4px solid",
                     borderColor: "primary.main",
@@ -421,9 +591,9 @@ const AboutUs = () => {
                   <Typography variant="h6" fontWeight="bold" gutterBottom>
                     {member.name}
                   </Typography>
-                  <Typography 
-                    variant="body2" 
-                    color="primary" 
+                  <Typography
+                    variant="body2"
+                    color="primary"
                     fontWeight="medium"
                     gutterBottom
                   >
@@ -468,16 +638,20 @@ const AboutUs = () => {
           <Typography variant="h4" fontWeight="bold" gutterBottom>
             Ready for Your Next Adventure?
           </Typography>
-          <Typography variant="h6" sx={{ opacity: 0.9, mb: 4, maxWidth: 600, mx: "auto" }}>
-            Let Iconic Yatra help you discover the world's most iconic destinations. 
-            Your journey begins here.
+          <Typography
+            variant="h6"
+            sx={{ opacity: 0.9, mb: 4, maxWidth: 600, mx: "auto" }}
+          >
+            At Iconic Yatra, we don't just plan trips—we craft experiences that
+            leave a lasting impression. Let us guide you on your next iconic
+            journey, turning your travel dreams into reality!
           </Typography>
           <Button
             variant="contained"
             size="large"
-            sx={{ 
-              bgcolor: "#fff", 
-              color: "primary.main", 
+            sx={{
+              bgcolor: "#fff",
+              color: "primary.main",
               fontWeight: "bold",
               px: 4,
               py: 1.5,

@@ -13,6 +13,7 @@ import {
   Divider,
   useTheme,
   useMediaQuery,
+  IconButton,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import {
@@ -23,6 +24,8 @@ import {
   Security,
   Download,
   Share,
+  Wallet,
+  ContentCopy,
 } from "@mui/icons-material";
 import PhonePay from "../../assets/packageimg/QR1.png";
 import GPay from "../../assets/packageimg/QR2.png";
@@ -195,58 +198,83 @@ const PaymentOption = () => {
 
                 {/* Bank Details Cards */}
                 <Grid container spacing={3}>
-                  {bankDetails.map((bank, index) => (
-                    <Grid size={{ xs: 12, sm: 6 }} key={index}>
-                      <Paper
-                        elevation={2}
-                        sx={{
-                          p: 3,
-                          borderRadius: 3,
-                          border: `2px solid ${bank.color}20`,
-                          background: `linear-gradient(135deg, #ffffff 0%, ${bank.color}08 100%)`,
-                          transition: "transform 0.2s, box-shadow 0.2s",
-                          "&:hover": {
-                            transform: "translateY(-2px)",
-                            boxShadow: 4,
-                          },
-                        }}
-                      >
-                        <Chip
-                          label={bank.bank}
-                          sx={{
-                            backgroundColor: bank.color,
-                            color: "white",
-                            fontWeight: "bold",
-                            mb: 2,
-                          }}
-                        />
-                        {Object.entries(bank.details).map(([key, value]) => (
-                          <Box key={key} sx={{ mb: 1.5 }}>
-                            <Typography
-                              variant="caption"
-                              sx={{
-                                fontWeight: "bold",
-                                color: "text.secondary",
-                                textTransform: "uppercase",
-                              }}
-                            >
-                              {key.replace(/([A-Z])/g, " $1")}:
-                            </Typography>
-                            <Typography
-                              variant="body2"
-                              sx={{
-                                fontWeight: "bold", // This makes the details bold
-                                color: "text.primary",
-                              }}
-                            >
-                              {value}
-                            </Typography>
-                          </Box>
-                        ))}
-                      </Paper>
-                    </Grid>
-                  ))}
-                </Grid>
+  {bankDetails.map((bank, index) => (
+    <Grid size={{ xs: 12, sm: 6 }} key={index}>
+      <Paper
+        elevation={2}
+        sx={{
+          p: 3,
+          borderRadius: 3,
+          border: `2px solid ${bank.color}20`,
+          background: `linear-gradient(135deg, #ffffff 0%, ${bank.color}08 100%)`,
+          transition: "transform 0.2s, box-shadow 0.2s",
+          "&:hover": {
+            transform: "translateY(-2px)",
+            boxShadow: 4,
+          },
+        }}
+      >
+        <Chip
+          label={bank.bank}
+          sx={{
+            backgroundColor: bank.color,
+            color: "white",
+            fontWeight: "bold",
+            mb: 2,
+          }}
+        />
+        {Object.entries(bank.details).map(([key, value]) => (
+          <Box key={key} sx={{ mb: 1.5 }}>
+            <Typography
+              variant="caption1"
+              sx={{
+                fontWeight: "bold",
+                color: "text.secondary",
+                textTransform: "uppercase",
+              }}
+            >
+              {key.replace(/([A-Z])/g, " $1")}:
+            </Typography>
+            <Box sx={{ display: "flex", alignItems: "center", gap: 1 }}>
+              <Typography
+                variant="body1"
+                sx={{
+                  fontWeight: "bold",
+                  color: "text.primary",
+                }}
+              >
+                {value}
+              </Typography>
+              {(key.toLowerCase() === "accountnumber" || 
+                key.toLowerCase() === "accountno" || 
+                key.toLowerCase() === "account" ||
+                key.toLowerCase() === "ifsc" ||
+                key.toLowerCase() === "ifscode") && (
+                <IconButton
+                  size="small"
+                  onClick={() => {
+                    navigator.clipboard.writeText(value);
+                    // You can add a toast notification here
+                    console.log(`Copied: ${value}`);
+                  }}
+                  sx={{
+                    color: "primary.main",
+                    "&:hover": {
+                      backgroundColor: "primary.light",
+                      color: "white",
+                    },
+                  }}
+                >
+                  <ContentCopy sx={{ fontSize: 16 }} />
+                </IconButton>
+              )}
+            </Box>
+          </Box>
+        ))}
+      </Paper>
+    </Grid>
+  ))}
+</Grid>
               </Box>
 
               <Divider sx={{ my: 4 }} />
@@ -254,12 +282,12 @@ const PaymentOption = () => {
               {/* CREDIT/DEBIT CARD SECTION */}
               <Box sx={{ mb: 4 }}>
                 <Box sx={{ display: "flex", alignItems: "center", mb: 2 }}>
-                  <CreditCard sx={{ color: "#ff9800", mr: 2, fontSize: 30 }} />
+                  <Payment sx={{ color: "#ff9800", mr: 2, fontSize: 30 }} />
                   <Typography
                     variant="h5"
                     sx={{ fontWeight: "bold", color: "#ff9800" }}
                   >
-                    Credit/Debit Cards
+                    Payment Options
                   </Typography>
                 </Box>
 
@@ -274,35 +302,129 @@ const PaymentOption = () => {
                 >
                   <Typography
                     variant="body2"
-                    sx={{ mb: 2, fontStyle: "italic" }}
+                    sx={{ mb: 3, fontStyle: "italic" }}
                   >
-                    💡 <strong>Note:</strong> All cards are accepted here. 3%
-                    extra charges apply for card payments.
+                    💡 <strong>Note:</strong> Choose your preferred payment
+                    method below.
                   </Typography>
 
-                  <Button
-                    variant="contained"
-                    href="https://rzp.io/l/Gn0nwLEnCL"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <Box
                     sx={{
-                      background:
-                        "linear-gradient(45deg, #ff9800 30%, #ff5722 90%)",
-                      borderRadius: 2,
-                      px: 4,
-                      py: 1,
-                      fontWeight: "bold",
-                      textTransform: "none",
-                      fontSize: "1.1rem",
-                      boxShadow: 3,
-                      "&:hover": {
-                        boxShadow: 6,
-                        transform: "translateY(-1px)",
-                      },
+                      display: "flex",
+                      gap: 3,
+                      flexDirection: { xs: "column", md: "row" },
                     }}
                   >
-                    💳 Pay with Card
-                  </Button>
+                    {/* Card Payment Option */}
+                    <Box
+                      sx={{
+                        flex: 1,
+                        p: 2,
+                        borderRadius: 2,
+                        backgroundColor: "rgba(255, 152, 0, 0.05)",
+                        border: "1px solid rgba(255, 152, 0, 0.2)",
+                      }}
+                    >
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                      >
+                        <CreditCard
+                          sx={{ color: "#ff9800", mr: 1, fontSize: 24 }}
+                        />
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: "bold", color: "#ff9800" }}
+                        >
+                          Credit/Debit Cards
+                        </Typography>
+                      </Box>
+                      <Typography
+                        variant="body2"
+                        sx={{ mb: 2, color: "text.secondary" }}
+                      >
+                        All cards accepted • 3% extra charges apply
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        href="https://rzp.io/l/Gn0nwLEnCL"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          background:
+                            "linear-gradient(45deg, #ff9800 30%, #ff5722 90%)",
+                          borderRadius: 2,
+                          px: 4,
+                          py: 1,
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          fontSize: "1rem",
+                          boxShadow: 2,
+                          width: "100%",
+                          "&:hover": {
+                            boxShadow: 4,
+                            transform: "translateY(-1px)",
+                          },
+                        }}
+                      >
+                        💳 Pay with Card
+                      </Button>
+                    </Box>
+
+                    {/* Other Payment Option */}
+                    <Box
+                      sx={{
+                        flex: 1,
+                        p: 2,
+                        borderRadius: 2,
+                        backgroundColor: "rgba(76, 175, 80, 0.05)",
+                        border: "1px solid rgba(76, 175, 80, 0.2)",
+                      }}
+                    >
+                      <Box
+                        sx={{ display: "flex", alignItems: "center", mb: 1 }}
+                      >
+                        <AccountBalance
+                          sx={{ color: "#4caf50", mr: 1, fontSize: 24 }}
+                        />
+                        <Typography
+                          variant="h6"
+                          sx={{ fontWeight: "bold", color: "#4caf50" }}
+                        >
+                          Net Banking & UPI
+                        </Typography>
+                      </Box>
+                      <Typography
+                        variant="body2"
+                        sx={{ mb: 2, color: "text.secondary" }}
+                      >
+                        All major banks and UPI apps • No additional charges
+                      </Typography>
+                      <Button
+                        variant="contained"
+                        href="https://rzp.io/l/your-other-payment-link"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{
+                          background:
+                            "linear-gradient(45deg, #4caf50 30%, #2e7d32 90%)",
+                          borderRadius: 2,
+                          px: 4,
+                          py: 1,
+                          fontWeight: "bold",
+                          textTransform: "none",
+                          fontSize: "1rem",
+                          boxShadow: 2,
+                          width: "100%",
+                          "&:hover": {
+                            boxShadow: 4,
+                            transform: "translateY(-1px)",
+                          },
+                        }}
+                      >
+                        🏦 Pay with Net Banking/UPI
+                      </Button>
+                    </Box>
+                  </Box>
                 </Paper>
               </Box>
 

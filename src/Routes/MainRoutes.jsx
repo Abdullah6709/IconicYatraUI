@@ -16,7 +16,7 @@ import TigerSafari from '../Pages/HomePages/TigerSafari';
 import Domestic from '../Pages/HomePages/Domestic';
 import International from '../Pages/HomePages/International';
 import SpecialPackages from '../Components/SpecialPackages';
-import PackageDetail from '../Components/PackageDetails'; // Make sure this path is correct
+import PackageDetail from '../Components/PackageDetails'; 
 
 import Support from '../Pages/HomePages/Support';
 import WhyChooseUs from '../Components/WhyChooseUs';
@@ -33,6 +33,11 @@ import Careers from "../Components/Careers";
 import Testimonials from "../Components/Testimonials"
 import CancellationRefundPolicy from "../Components/CancellationRefundPolicy";
 import InternationalPackageDetail from '../Components/InternationalPackageDetail';
+import LatestBlog from "../Components/LatestBlog";
+
+
+
+import SpecialPackageDetail from "../Components/SpecialPackageDetail";
 
 const MainRoutes = () => {
   return (
@@ -74,8 +79,15 @@ const MainRoutes = () => {
       <Route path="/domestic/:destination" element={<Layout><Domestic /></Layout>} />
      <Route path="/international" element={<Layout><International /></Layout>} />
 <Route path="/international/:destination" element={<Layout><International /></Layout>} />
-<Route path="/internationalpackage/:packageId" element={<Layout><InternationalPackageDetail /></Layout>}
-/>
+<Route path="/internationalpackage/:packageId" element={<Layout><InternationalPackageDetail /></Layout>}/>
+
+
+<Route path="/special-package-details/:packageId" element={<Layout><SpecialPackageDetail /></Layout>}/>
+
+
+<Route path="/latestblogs" element={<Layout><LatestBlog /></Layout>}/>
+
+
 
       
       {/* 404 route - should be last */}
